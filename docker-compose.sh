@@ -10,7 +10,7 @@ trap finish EXIT
 
 compose-config() {
   mv -f ${TMP_FILE} ${TMP_FILE}.tmp
-  docker-compose -f ${1} -f ${TMP_FILE}.tmp config >${TMP_FILE}
+  docker compose -f ${1} -f ${TMP_FILE}.tmp config >${TMP_FILE}
 
   rm -f ${TMP_FILE}.tmp 2>/dev/null
 }
@@ -36,5 +36,5 @@ for f in ${files[@]}; do
   compose-config ${f}
 done
 
-docker-compose -f ${TMP_FILE} ${args[@]}
+docker compose -f ${TMP_FILE} ${args[@]}
 exit $?
